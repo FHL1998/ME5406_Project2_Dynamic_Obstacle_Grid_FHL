@@ -4,3 +4,11 @@ This repository contains the implementation of reinforcement learning algorithms
 ## Project Description
 > The objective of this project is to Deep Reinforcement Learning techniques to implement the **Dynamic Obstacle Avoidance in Generalized Environment**. 
 > The problem is essentially a grid-world scenario in which the agent’s target is to go from the start point, go through the room by exit which was randomly setalong the wall, and reach the goal which set in another room, while avoiding crashing into dynamic obstacles in the environment. Meanwhile, the adding of the field of views enables the agent to have the ability of partial or fully observation. It has to be mentioned that the generalization ability oftrained model is tested during the process.
+
+ ### Virtual Environment Creation
+ First, create the virtual environment using Anoconda and activate the created environment in Ubuntu 18.04.
+ 
+```python
+  $ conda create -n obstacle_grid python=3.6
+  $ source activate obstacle_grid
+```
