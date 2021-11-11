@@ -24,13 +24,13 @@ pip install -r requirements.txt
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
 ### Trian
 ```python
-python train.py --env 'ThreeRoom' --algo ppo  --frames-per-proc 128
-python train.py --env 'ThreeRoom' --algo ppo  --frames-per-proc 128  --memory  --recurrence 2
+python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128
+python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128 --memory --recurrence 2
 ```
 ### Evaluate
 ```python
 python evaluate.py --eval_env 'ThreeRoom' --algo ppo --recurrence 1
-python evaluate.py --eval_env 'ThreeRoom' --algo ppo --memory  --recurrence 2
+python evaluate.py --eval_env 'ThreeRoom' --algo ppo --memory --recurrence 2
 python evaluate.py --eval_env 'FourRoom' --algo ppo --recurrence 1
 ```
 
