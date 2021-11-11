@@ -32,10 +32,14 @@ python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128 --memory --re
 python evaluate.py --eval_env 'ThreeRoom' --algo ppo --recurrence 1
 python evaluate.py --eval_env 'ThreeRoom' --algo ppo --memory --recurrence 2
 python evaluate.py --eval_env 'FourRoom' --algo ppo --recurrence 1
+python evaluate.py --eval_env 'FourRoom' --algo ppo --memory --recurrence 2
 ```
 
 ### Visualize
 ```python
+python visualize.py --env 'ThreeRoom' --algo ppo --recurrence 1
+python visualize.py --env 'ThreeRoom' --algo ppo --memory --recurrence 4
 python visualize.py --env 'FourRoom' --algo ppo --recurrence 1
+python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 4
 ```
 
