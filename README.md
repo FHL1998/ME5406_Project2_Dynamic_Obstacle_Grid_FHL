@@ -26,6 +26,8 @@ The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.p
 ```python
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128 --memory --recurrence 2
+python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8
+python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8 --memory --recurrence 2
 ```
 ### Evaluate
 ```python
