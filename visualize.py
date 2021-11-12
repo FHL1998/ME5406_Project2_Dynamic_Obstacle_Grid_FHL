@@ -50,6 +50,7 @@ register(
     entry_point='custom_env.env.env:ThreeRoomsDynamicObstaclesEnv21x21',
     reward_threshold=0.95
 )
+
 # Load environment
 if args.env == 'FourRoom':
     env = gym.make('FourRooms-Dynamic-Obstacles-21x21-v0')
