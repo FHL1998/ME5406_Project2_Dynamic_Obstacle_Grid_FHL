@@ -23,12 +23,12 @@ pip install -r requirements.txt
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
 ### Trian
-#### A2C
+#### A2C Agent
 ```python
 python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8
 python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8 --memory --recurrence 2
 ```
-#### PPO
+#### PPO Agent
 ```python
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128 --memory --recurrence 2
