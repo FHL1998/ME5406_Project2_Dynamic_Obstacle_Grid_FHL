@@ -556,22 +556,6 @@ class MiniGridEnv(gym.Env):
         self.np_random, _ = seeding.np_random(seed)
         return [seed]
 
-    def hash(self, size=16):
-        """Compute a hash that uniquely identifies the current state of the environment.
-        :param size: Size of the hashing
-        """
-        sample_hash = hashlib.sha256()
-
-        to_encode = [self.grid.encode().tolist(), self.agent_pos, self.agent_dir]
-        for item in to_encode:
-            sample_hash.update(str(item).encode('utf8'))
-
-        return sample_hash.hexdigest()[:size]
-
-    @property
-    def steps_remaining(self):
-        return self.max_steps - self.step_count
-
     def _gen_grid(self, width, height):
         assert False, "_gen_grid needs to be implemented by each environment"
 
