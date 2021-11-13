@@ -944,7 +944,7 @@ class MiniGridEnv(gym.Env):
         for i in range(self.agent_dir + 1):
             grid = grid.rotate_left()
 
-        # Process occluders and visibility
+        # Process includers and visibility
         # Note that this incurs some performance cost
         if not self.see_through_walls:
             vis_mask = grid.process_vis(agent_pos=(self.agent_view_size // 2, self.agent_view_size - 1))
