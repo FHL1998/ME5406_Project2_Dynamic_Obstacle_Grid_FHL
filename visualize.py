@@ -1,13 +1,13 @@
 import argparse
-
+import torch
 import gym
 import numpy
 
 import utils
 # from custom_env.register import register
-from utils import device
 from gym.envs.registration import register
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Parse arguments
 global frames
 parser = argparse.ArgumentParser()

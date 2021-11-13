@@ -6,12 +6,10 @@ import torch
 from algorithms.utils.penv import ParallelEnv
 
 import utils
-# from utils import device
 from gym.envs.registration import register
 
-from utils.figure import mean_smooth
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-device = "cpu"
 register(
     id='FourRooms-Dynamic-Obstacles-21x21-v0',
     entry_point='custom_env.env.env:FourRoomsDynamicObstaclesEnv21x21',
