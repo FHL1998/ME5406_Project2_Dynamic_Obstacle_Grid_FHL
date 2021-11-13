@@ -23,36 +23,36 @@ pip install -r requirements.txt
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
 ### Trian
-#### A2C Agent
+- A2C Agent
 ```python
 python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8
 python train.py --env 'ThreeRoom' --algo a2c --frames-per-proc 8 --memory --recurrence 2
 ```
-#### PPO Agent
+- PPO Agent
 ```python
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128
 python train.py --env 'ThreeRoom' --algo ppo --frames-per-proc 128 --memory --recurrence 2
 ```
 
 ### Evaluate
-#### Evaluate in 3-room Environment
+- Evaluate in 3-room Environment
 ```python
 python evaluate.py --eval_env 'ThreeRoom' --algo ppo --recurrence 1
 python evaluate.py --eval_env 'ThreeRoom' --algo ppo --memory --recurrence 2
 ```
-#### Evaluate in 4-room Environment
+- Evaluate in 4-room Environment
 ```python
 python evaluate.py --eval_env 'FourRoom' --algo ppo --recurrence 1
 python evaluate.py --eval_env 'FourRoom' --algo ppo --memory --recurrence 2
 ```
 
 ### Visualize
-#### Visualize in 3-room environment
+- Visualize in 3-room environment
 ```python
 python visualize.py --env 'ThreeRoom' --algo ppo --recurrence 1
 python visualize.py --env 'ThreeRoom' --algo ppo --memory --recurrence 2
 ```
-#### Visualize in 4-room environment
+- Visualize in 4-room environment
 ```python
 python visualize.py --env 'FourRoom' --algo ppo --recurrence 1
 python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 2
