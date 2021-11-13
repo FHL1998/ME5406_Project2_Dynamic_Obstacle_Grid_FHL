@@ -7,7 +7,7 @@ This repository contains the implementation of reinforcement learning algorithms
 
 ## Project Preparation ![maven](https://img.shields.io/badge/Project-Preparation-important)
  ### Virtual Environment Creation
- First, create the virtual environment using Anoconda and activate the created environment in Ubuntu 18.04.
+ First, create the virtual environment using Anoconda and activate the created environment in **Ubuntu 18.04**.
  
 ```python
 $ conda create -n obstacle_grid python=3.6
