@@ -136,6 +136,7 @@ class BaseAlgo(ABC):
             # Do one agent-environment interaction
 
             # 将 dict 转化为 torch.tensor
+            # preprocessed_obs = torch.tensor(self.obs, device=self.device)
             preprocessed_obs = self.preprocess_obss(self.obs, device=self.device)
             # 强制之后的内容不进行计算图构建
             with torch.no_grad():
@@ -189,7 +190,7 @@ class BaseAlgo(ABC):
             self.log_episode_num_frames *= self.mask
 
         # Add advantage and return to experiences
-
+        # preprocessed_obs = torch.tensor(self.obs, device=self.device)
         preprocessed_obs = self.preprocess_obss(self.obs, device=self.device)
         with torch.no_grad():
             #  for ACModel, recurrent = False, for RecurrentACModel, recurrent=True
@@ -240,7 +241,7 @@ class BaseAlgo(ABC):
         exps.log_prob = self.log_probs.transpose(0, 1).reshape(-1)
 
         # Preprocess experiences
-
+        # exps.obs = torch.tensor(exps.obs, device=self.device)
         exps.obs = self.preprocess_obss(exps.obs, device=self.device)
 
         # Log some values

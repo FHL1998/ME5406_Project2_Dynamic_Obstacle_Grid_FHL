@@ -50,6 +50,3 @@ class ParallelEnv(gym.Env):
             obs = self.envs[0].reset()
         results = zip(*[(obs, reward, done, info)] + [local.recv() for local in self.locals])
         return results
-
-    def render(self):
-        raise NotImplementedError

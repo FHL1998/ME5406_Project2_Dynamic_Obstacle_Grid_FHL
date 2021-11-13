@@ -84,8 +84,8 @@ class A2CAlgo(BaseAlgo):
         return logs
 
     def _get_starting_indexes(self):
-        """Gives the indexes of the observations given to the model and the
-        experiences used to compute the loss at first.
+        """At first, it returns the indices of the observations fed into the model
+        and the experiences needed to compute the loss.
 
         The indexes are the integers from 0 to `self.num_frames` with a step of
         `self.recurrence`. If the model is not recurrent, they are all the
