@@ -1,5 +1,4 @@
 import torch
-
 import utils
 from model import ACModel
 
@@ -26,12 +25,9 @@ class Agent:
         self.actor_critic_model.load_state_dict(utils.get_model_state(model_dir))
         self.actor_critic_model.to(device)
         self.actor_critic_model.eval()
-        # if hasattr(self.preprocess_obss, "vocab"):
-        #     self.preprocess_obss.vocab.load_vocab(utils.get_vocab(model_dir))
 
     def get_actions(self, obss):
         preprocessed_obss = self.preprocess_obss(obss, device=device)
-
         with torch.no_grad():
             if self.actor_critic_model.recurrent:
                 dist, _, self.memories = self.actor_critic_model(preprocessed_obss, self.memories)
