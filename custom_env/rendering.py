@@ -2,6 +2,7 @@ import math
 import numpy as np
 
 
+# This file refers to https://github.com/maximecb/gym-minigrid/blob/master/gym_minigrid/rendering.py
 def down_sample(img, factor):
     """
     Down sample an image along both dimensions by some factor
@@ -116,6 +117,7 @@ def point_in_triangle(a, b, c):
 
         # Check if point is in triangle
         return (u >= 0) and (v >= 0) and (u + v) < 1
+
     return fn
 
 

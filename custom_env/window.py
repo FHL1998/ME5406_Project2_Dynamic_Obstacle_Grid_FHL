@@ -9,6 +9,7 @@ except:
     print('pip3 install --user matplotlib')
     sys.exit(-1)
 
+
 class Window:
     """
     Window to draw a gridworld instance using Matplotlib

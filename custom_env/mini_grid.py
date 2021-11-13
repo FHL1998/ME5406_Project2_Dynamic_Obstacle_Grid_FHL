@@ -575,75 +575,12 @@ class MiniGridEnv(gym.Env):
     def _gen_grid(self, width, height):
         assert False, "_gen_grid needs to be implemented by each environment"
 
-    def _reward(self):
-        """
-        Compute the reward to be given upon success
-        """
-        return 1 - 0.9 * (self.step_count / self.max_steps)
-
     def _rand_int(self, low, high):
         """
         Generate random integer in [low,high]
         """
 
         return self.np_random.randint(low, high)
-
-    def _rand_float(self, low, high):
-        """
-        Generate random float in [low,high]
-        """
-
-        return self.np_random.uniform(low, high)
-
-    def _rand_bool(self):
-        """
-        Generate random boolean value
-        """
-
-        return self.np_random.randint(0, 2) == 0
-
-    def _rand_elem(self, iterable):
-        """
-        Pick a random element in a list
-        """
-
-        lst = list(iterable)
-        idx = self._rand_int(0, len(lst))
-        return lst[idx]
-
-    def _rand_subset(self, iterable, num_elems):
-        """
-        Sample a random subset of distinct elements of a list
-        """
-
-        lst = list(iterable)
-        assert num_elems <= len(lst)
-        out = []
-
-        while len(out) < num_elems:
-            elem = self._rand_elem(lst)
-            lst.remove(elem)
-            out.append(elem)
-
-        return out
-
-    def _rand_color(self):
-        """
-        Generate a random color name (string)
-        """
-
-        COLOR_NAMES = sorted(list(COLORS.keys()))
-        return self._rand_elem(COLOR_NAMES)
-
-    def _rand_pos(self, x_Low, xHigh, yLow, yHigh):
-        """
-        Generate a random (x,y) position tuple
-        """
-
-        return (
-            self.np_random.randint(x_Low, xHigh),
-            self.np_random.randint(yLow, yHigh)
-        )
 
     def place_obj(self, obj, top=None, size=None, reject_fn=None, max_tries=math.inf):
         """
@@ -868,13 +805,10 @@ class MiniGridEnv(gym.Env):
         DIR_TO_VEC = [
             # Pointing right (positive X)
             np.array((1, 0)),
-
             # Down (positive Y)
             np.array((0, 1)),
-
             # Pointing left (negative X)
             np.array((-1, 0)),
-
             # Up (negative Y)
             np.array((0, -1)),
         ]
@@ -996,50 +930,6 @@ class MiniGridEnv(gym.Env):
 
         return obs_cell is not None and obs_cell.type == world_cell.type
 
-    # def step(self, action):
-    #     self.step_count += 1
-    #     reward = 0
-    #     done = False
-    #
-    #     # Get the position in front of the agent
-    #     forward_pos = self.front_pos
-    #
-    #     # Get the contents of the cell in front of the agent
-    #     fwd_cell = self.grid.get(*forward_pos)
-    #
-    #     # DIRECTIONS: right: 0(1,0) down:1(0,1) left:2(-1,0) up:3(0,-1)
-    #     # ACTIONS: 0:left 1:right 2:forward
-    #
-    #     # Rotate left
-    #     if action == self.actions.left:
-    #         self.agent_dir -= 1
-    #         if self.agent_dir < 0:
-    #             self.agent_dir += 4
-    #
-    #     # Rotate right
-    #     elif action == self.actions.right:
-    #         self.agent_dir = (self.agent_dir + 1) % 4
-    #
-    #     # Move forward
-    #     elif action == self.actions.forward:
-    #         #  如果forward_cell object 为空或object可以重叠（一个cell包含多个objects)
-    #         if fwd_cell is None or fwd_cell.can_overlap():
-    #             self.agent_pos = forward_pos
-    #         # if fwd_cell is not None and fwd_cell.type == 'goal':
-    #         #     done = True
-    #         #     # reward = self._reward()
-    #         #     reward = 100
-    #
-    #     else:
-    #         assert False, "unknown action"
-    #
-    #     if self.step_count >= self.max_steps:
-    #         done = True
-    #
-    #     obs = self.gen_obs()
-    #
-    #     return self.agent_pos, obs, reward, done, {}
-
     def gen_obs_grid(self):
         """
         Generate the sub-grid observed by the agent.
@@ -1125,7 +1015,7 @@ class MiniGridEnv(gym.Env):
 
         if mode == 'human' and not self.window:
             from custom_env import window
-            self.window = window.Window('custom_env')
+            self.window = window.Window('ME5406 Custom Env')
             self.window.show(block=False)
 
         # Compute which cells are visible to the agent
