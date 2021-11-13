@@ -64,22 +64,6 @@ class FourRoomsDynamicObstaclesEnv21x21(MiniGridEnv):
                 # Construction of horizontal walls bottom wall and exit(represented by None)
                 if j + 1 < 2:
                     self.grid.horizontal_wall(x_left, y_bottom, room_w)
-                    # self.grid.horizontal_wall(0, 20, 20)
-                    # pos = (self._rand_int(x_left+5, x_right), y_bottom)
-                    # self.grid.set(*pos, Exit())
-        # for i in range(0, 2):
-        #     x_left = room_w
-        #     y_top = room_h
-        #     # print('y_top', y_top)
-        #     x_right = x_left + room_w
-        #     y_bottom = y_top + room_h
-        #     # print('y_bottom', y_bottom)
-        #     # Bottom wall and door
-        #     if i + 1 < 2:
-        #         # random initialize the exit place along the wall of each room
-        #         pos = (x_left, self._rand_int(1, y_top))
-        #         # set None means that this grid has no object, which represents the exit
-        #         self.grid.set(*pos, Exit())
         for j in range(0, 2):
             x_left = room_w
             y_top = room_h

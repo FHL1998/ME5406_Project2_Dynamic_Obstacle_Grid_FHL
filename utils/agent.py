@@ -1,8 +1,9 @@
 import torch
 
 import utils
-from .other import device
 from model import ACModel
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class Agent:

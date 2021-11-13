@@ -996,49 +996,49 @@ class MiniGridEnv(gym.Env):
 
         return obs_cell is not None and obs_cell.type == world_cell.type
 
-    def step(self, action):
-        self.step_count += 1
-        reward = 0
-        done = False
-
-        # Get the position in front of the agent
-        forward_pos = self.front_pos
-
-        # Get the contents of the cell in front of the agent
-        fwd_cell = self.grid.get(*forward_pos)
-
-        # DIRECTIONS: right: 0(1,0) down:1(0,1) left:2(-1,0) up:3(0,-1)
-        # ACTIONS: 0:left 1:right 2:forward
-
-        # Rotate left
-        if action == self.actions.left:
-            self.agent_dir -= 1
-            if self.agent_dir < 0:
-                self.agent_dir += 4
-
-        # Rotate right
-        elif action == self.actions.right:
-            self.agent_dir = (self.agent_dir + 1) % 4
-
-        # Move forward
-        elif action == self.actions.forward:
-            #  如果forward_cell object 为空或object可以重叠（一个cell包含多个objects)
-            if fwd_cell is None or fwd_cell.can_overlap():
-                self.agent_pos = forward_pos
-            # if fwd_cell is not None and fwd_cell.type == 'goal':
-            #     done = True
-            #     # reward = self._reward()
-            #     reward = 100
-
-        else:
-            assert False, "unknown action"
-
-        if self.step_count >= self.max_steps:
-            done = True
-
-        obs = self.gen_obs()
-
-        return self.agent_pos, obs, reward, done, {}
+    # def step(self, action):
+    #     self.step_count += 1
+    #     reward = 0
+    #     done = False
+    #
+    #     # Get the position in front of the agent
+    #     forward_pos = self.front_pos
+    #
+    #     # Get the contents of the cell in front of the agent
+    #     fwd_cell = self.grid.get(*forward_pos)
+    #
+    #     # DIRECTIONS: right: 0(1,0) down:1(0,1) left:2(-1,0) up:3(0,-1)
+    #     # ACTIONS: 0:left 1:right 2:forward
+    #
+    #     # Rotate left
+    #     if action == self.actions.left:
+    #         self.agent_dir -= 1
+    #         if self.agent_dir < 0:
+    #             self.agent_dir += 4
+    #
+    #     # Rotate right
+    #     elif action == self.actions.right:
+    #         self.agent_dir = (self.agent_dir + 1) % 4
+    #
+    #     # Move forward
+    #     elif action == self.actions.forward:
+    #         #  如果forward_cell object 为空或object可以重叠（一个cell包含多个objects)
+    #         if fwd_cell is None or fwd_cell.can_overlap():
+    #             self.agent_pos = forward_pos
+    #         # if fwd_cell is not None and fwd_cell.type == 'goal':
+    #         #     done = True
+    #         #     # reward = self._reward()
+    #         #     reward = 100
+    #
+    #     else:
+    #         assert False, "unknown action"
+    #
+    #     if self.step_count >= self.max_steps:
+    #         done = True
+    #
+    #     obs = self.gen_obs()
+    #
+    #     return self.agent_pos, obs, reward, done, {}
 
     def gen_obs_grid(self):
         """

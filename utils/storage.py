@@ -3,9 +3,9 @@ import os
 import torch
 import logging
 import sys
-
 import utils
-from .other import device
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def create_folders_if_necessary(path):
