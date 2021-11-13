@@ -1,11 +1,37 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from abc import abstractmethod
 from torch.distributions.categorical import Categorical
 
 # Function from https://github.com/ikostrikov/py_toporch-a2c-ppo-acktr/blob/master/model.py
 # also refer to https://github.com/facebookresearch/modeling_long_term_future
-import algorithms
+# import algorithms
+
+
+class ACModel:
+    recurrent = False
+
+    @abstractmethod
+    def __init__(self, obs_space, action_space):
+        pass
+
+    @abstractmethod
+    def forward(self, obs):
+        pass
+
+
+class RecurrentACModel(ACModel):
+    recurrent = True
+
+    @abstractmethod
+    def forward(self, obs, memory):
+        pass
+
+    @property
+    @abstractmethod
+    def memory_size(self):
+        pass
 
 
 def init_params(m):
@@ -17,7 +43,7 @@ def init_params(m):
             m.bias.data.fill_(0)
 
 
-class ACModel(nn.Module, algorithms.RecurrentACModel):
+class ACModel(nn.Module, RecurrentACModel):
     def __init__(self, obs_space, action_space, use_memory=False):
         super().__init__()
 
