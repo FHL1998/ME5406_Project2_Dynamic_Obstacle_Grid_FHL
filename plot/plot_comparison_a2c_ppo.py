@@ -18,8 +18,8 @@ args = parser.parse_args()
 
 plt.rc('font', family='Times New Roman', size=12)
 f1, ax1 = plt.subplots(1, 1)
-csv_ppo = pandas.read_csv('csvs/ppo.csv')
-csv_a2c = pandas.read_csv('csvs/a2c.csv')
+csv_ppo = pandas.read_csv('results/csvs/ppo.csv')
+csv_a2c = pandas.read_csv('results/csvs/a2c.csv')
 
 ax1.plot(csv_ppo['frames'], mean_smooth(csv_ppo['return_mean']), color='green', label='PPO')
 ax1.plot(csv_a2c['frames'], mean_smooth(csv_a2c['return_mean']), color='purple', label='A2C')

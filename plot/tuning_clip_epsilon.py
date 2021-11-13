@@ -10,12 +10,12 @@ def mean_smooth(input_data):
     return pandas.Series(list(input_data)).rolling(2000, min_periods=5).mean()
 
 
-csv_a2c_lr_1 = pandas.read_csv('csvs/a2c_1_0.001.csv')
-csv_a2c_lr_2 = pandas.read_csv('csvs/a2c_1_0.00085.csv')
+csv_a2c_lr_1 = pandas.read_csv('results/csvs/a2c_1_0.001.csv')
+csv_a2c_lr_2 = pandas.read_csv('results/csvs/a2c_1_0.00085.csv')
 
-csv_ppo_clip_1 = pandas.read_csv('csvs/ppo_clip_0.1.csv')
-csv_ppo = pandas.read_csv('csvs/ppo.csv')
-csv_ppo_clip_4 = pandas.read_csv('csvs/ppo_clip_0.4.csv')
+csv_ppo_clip_1 = pandas.read_csv('results/csvs/ppo_clip_0.1.csv')
+csv_ppo = pandas.read_csv('results/csvs/ppo.csv')
+csv_ppo_clip_4 = pandas.read_csv('results/csvs/ppo_clip_0.4.csv')
 
 plt.rc('font', family='Times New Roman', size=12)
 f, ax = plt.subplots(1, 1)
