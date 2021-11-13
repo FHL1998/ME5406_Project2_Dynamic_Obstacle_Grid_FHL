@@ -41,7 +41,7 @@ utils.seed(args.seed)
 print(f"Device: {device}\n")
 register(
     id='FourRooms-Dynamic-Obstacles-21x21-v0',
-    entry_point='custom_env.env.env:FourRoomsDynamicObstaclesEnv21x21',
+    entry_point='custom_env.env:FourRoomsDynamicObstaclesEnv21x21',
     reward_threshold=0.95
 )
 

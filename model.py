@@ -101,7 +101,6 @@ class ACModel(nn.Module, algorithms.RecurrentACModel):
         dist = Categorical(logits=F.log_softmax(x, dim=1))
         # print('dist', dist)
         x = self.critic(embedding)
-
         value = x.squeeze(1)
 
         return dist, value, memory
