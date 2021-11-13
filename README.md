@@ -60,11 +60,29 @@ python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 2
 
 ## Result Display ![maven](https://img.shields.io/badge/Result-GIF-success)
 ### 3-room Environment
-<div align=center>
-<img src="results/gifs/a2c_gif.gif" width="250" >     <img src="results/gifs/storage_3_room.gif" width="250"/> 
-</div>
+
+<table>
+    <tr>
+            <th>A2C Agent</th>
+            <th>PPO Agent</th>
+    </tr>
+    <tr>
+        <td><img src="results/gifs/a2c_gif.gif" width="250" /></td>
+        <td><img src="results/gifs/storage_3_room.gif" width="250"/></td>
+    </tr>
+</table>
 
 ### 4-room Environment
-<div align=center>
-<img src="results/gifs/storage_4_room_ppo.gif" width="250" >     <img src="results/gifs/storage_4_room_ppo_lstm2.gif" width="250"/> 
-</div>
+<table>
+    <tr>
+            <th>PPO Agent</th>
+            <th>PPO+LSTM2 Agent</th>
+            <th>PPO+LSTM4 Agent</th>
+    </tr>
+    <tr>
+        <td><img src="results/gifs/storage_4_room_ppo.gif" width="250" /></td>
+        <td><img src="results/gifs/storage_4_room_ppo_lstm2.gif" width="250" /></td>
+        <td><img src="results/gifs/storage_4_room_ppo_lstm4.gif" width="250" /></td>
+    </tr>
+</table>
+
