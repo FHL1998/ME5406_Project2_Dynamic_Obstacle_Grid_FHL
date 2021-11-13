@@ -58,6 +58,13 @@ python visualize.py --env 'FourRoom' --algo ppo --recurrence 1
 python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 2
 ```
 
+### Tensorboard & WanDB
+During training, logs are recorder in Tensorboard and WanDB, and an example of using tensorboard:
+```python
+cd storage/ppo_4
+tensorboard --logdir=./ --host=127.0.0.1
+```
+
 ## Result Display ![maven](https://img.shields.io/badge/Result-GIF-success)
 ### 3-room Environment
 
