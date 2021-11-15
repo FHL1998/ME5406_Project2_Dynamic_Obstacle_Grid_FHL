@@ -15,8 +15,8 @@ from gym.envs.registration import register
 import torch
 from model import ACModel
 
-# device = "cpu"
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = "cpu"
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 register(
     id='FourRooms-Dynamic-Obstacles-21x21-v0',
@@ -45,7 +45,7 @@ parser.add_argument("--save-interval", type=int, default=10,
                     help="number of updates between two saves (default: 10, 0 means no saving)")
 parser.add_argument("--procs", type=int, default=8,
                     help="number of processes (default: 16)")
-parser.add_argument("--frames", type=int, default=2 * 10 ** 7,
+parser.add_argument("--frames", type=int, default=1.5 * 10 ** 7,
                     help="number of frames of training (default: 1e7)")
 parser.add_argument('--wandb-project-name', type=str, default="me5406",
                     help="the wandb's project name")
@@ -79,7 +79,9 @@ parser.add_argument("--optim-alpha", type=float, default=0.99,
                     help="RMSprop optimizer alpha (default: 0.99)")
 parser.add_argument("--clip-eps", type=float, default=0.2,
                     help="clipping epsilon for PPO (default: 0.2)")
-parser.add_argument("--recurrence", type=int, default=4,
+parser.add_argument("--memory", action="store_true", default=False,
+                    help="add a LSTM to the model")
+parser.add_argument("--recurrence", type=int, default=1,
                     help="number of time-steps gradient is back-propagated (default: 1). If > 1, a LSTM is added to "
                          "the model to have memory.")
 
@@ -194,7 +196,6 @@ if __name__ == '__main__':
             # print('logs["return_per_episode"]', logs["return_per_episode"])
             # calculation of mean, std, min, max
             return_per_episode = utils.synthesize(logs["return_per_episode"])
-
             num_frames_per_episode = utils.synthesize(logs["num_frames_per_episode"])
 
             header = ["update", "frames", "FPS", "duration"]

@@ -1,3 +1,5 @@
+from abc import ABC
+
 import numpy as np
 import math
 import gym
@@ -435,7 +437,7 @@ class Grid:
         return mask
 
 
-class MiniGridEnv(gym.Env):
+class MiniGridEnv(gym.Env, ABC):
     """
     2D grid world game environment
     """

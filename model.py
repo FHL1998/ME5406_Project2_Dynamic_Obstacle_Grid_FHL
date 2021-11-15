@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from abc import abstractmethod
 from torch.distributions.categorical import Categorical
 
+
 # Function from https://github.com/ikostrikov/py_toporch-a2c-ppo-acktr/blob/master/model.py
 # also refer to https://github.com/facebookresearch/modeling_long_term_future
 # import algorithms
@@ -128,6 +129,8 @@ class ACModel(nn.Module, RecurrentACModel):
         dist = Categorical(logits=F.log_softmax(x, dim=1))
         # print('dist', dist)
         x = self.critic(embedding)
+        # print('x', x)
         value = x.squeeze(1)
+        # print('value', value)
 
         return dist, value, memory
