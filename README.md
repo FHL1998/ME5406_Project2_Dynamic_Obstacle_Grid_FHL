@@ -65,7 +65,7 @@ python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 2
 ```
 
 ### Tensorboard & WanDB
-During training, logs are recorder in Tensorboard and WanDB, and an example of using tensorboard:
+During training, logs are recorder in Tensorboard and Weights & Biases, and an example of using tensorboard:
 ```python
 cd storage/ppo_4
 tensorboard --logdir=./ --host=127.0.0.1
