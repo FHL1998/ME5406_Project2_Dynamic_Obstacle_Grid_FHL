@@ -26,6 +26,8 @@ The project is based on the python version `Python 3.6.8`. For the requirements,
 pip install -r requirements.txt
 ```
 
+In order to use GPU acceleration, install suitable cudn
+
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
 ### Trian
