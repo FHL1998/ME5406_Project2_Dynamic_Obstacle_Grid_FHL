@@ -9,7 +9,7 @@ The available environments are: `ThreeRooms-Dynamic-Obstacles-21x21-v0` and `Fou
 * 📈 Tensorboard Logging
 * 📜 Local Reproducibility via Seeding
 * 🎮 Videos of Gameplay Capturing
-* 🧫 Experiment Management with [Weights and Biases](https://wandb.ai/site)
+* 🧫 Experiment Management with [Weights and Biases](https://wandb.ai/fhl1998/me5406?workspace=user-fhl1998)
 
 ## Project Preparation ![maven](https://img.shields.io/badge/Project-Preparation-important)
  ### Virtual Environment Creation
