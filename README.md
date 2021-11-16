@@ -26,7 +26,11 @@ The project is based on the python version `Python 3.6.8`. For the requirements,
 pip install -r requirements.txt
 ```
 
-In order to use GPU acceleration, install suitable cudn
+In order to use GPU acceleration, be sure to install suitable CUDA version as well, for the project the installation command is:
+```python
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
+```
+
 
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
