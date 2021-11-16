@@ -5,7 +5,11 @@ This repository contains the implementation of reinforcement learning algorithms
 > The objective of this project is to Deep Reinforcement Learning techniques to implement the **Dynamic Obstacle Avoidance in Generalized Environment**. 
 > The problem is essentially a grid-world scenario in which the agent’s target is to go from the start point, go through the room by exit which was randomly setalong the wall, and reach the goal which set in another room, while avoiding crashing into dynamic obstacles in the environment. Meanwhile, the adding of the field of views enables the agent to have the ability of partial or fully observation. It has to be mentioned that the generalization ability oftrained model is tested during the process.
 
-The available environments are: `ThreeRooms-Dynamic-Obstacles-21x21-v0` and `FourRooms-Dynamic-Obstacles-21x21-v0` 
+The available environments are: `ThreeRooms-Dynamic-Obstacles-21x21-v0` and `FourRooms-Dynamic-Obstacles-21x21-v0`:
+* 📈 Tensorboard Logging
+* 📜 Local Reproducibility via Seeding
+* 🎮 Videos of Gameplay Capturing
+* 🧫 Experiment Management with [Weights and Biases](https://wandb.ai/site)
 
 ## Project Preparation ![maven](https://img.shields.io/badge/Project-Preparation-important)
  ### Virtual Environment Creation
