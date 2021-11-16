@@ -26,7 +26,7 @@ The project is based on the python version `Python 3.6.8`. For the requirements,
 pip install -r requirements.txt
 ```
 
-In order to use GPU acceleration, be sure to install suitable CUDA version as well, for the project the installation command is:
+To use GPU acceleration, make sure to install the appropriate CUDA version; the installation command for the project is:
 ```python
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
 ```
