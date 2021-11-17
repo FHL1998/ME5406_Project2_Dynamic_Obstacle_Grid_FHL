@@ -14,6 +14,7 @@ import utils
 from gym.envs.registration import register
 import torch
 from model import ACModel
+from distutils.util import strtobool
 
 device = "cpu"
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -42,17 +43,19 @@ parser.add_argument("--seed", type=int, default=1,
 parser.add_argument("--log-interval", type=int, default=1,
                     help="number of updates between two logs (default: 1)")
 parser.add_argument("--save-interval", type=int, default=10,
-                    help="number of updates between two saves (default: 10, 0 means no saving)")
-parser.add_argument("--procs", type=int, default=8,
-                    help="number of processes (default: 16)")
+                    help="save interval of between 2 updates (default: 10)")
+parser.add_argument("--procs", type=int, default=4,
+                    help="number of processes (default: 8)")
 parser.add_argument("--frames", type=int, default=1.5 * 10 ** 7,
-                    help="number of frames of training (default: 1e7)")
+                    help="number of frames of training (default: 1.5 * e7)")
 parser.add_argument('--wandb-project-name', type=str, default="me5406",
                     help="the wandb's project name")
 parser.add_argument('--wandb-entity', type=str, default="fhl1998",
                     help="the entity of wandb's project")
-parser.add_argument('--prod-mode', type=bool, default=False,
+parser.add_argument('--prod-mode', type=bool, default=True,
                     help='run the script in production mode and use wandb to log outputs')
+parser.add_argument('--capture-video', type=lambda x: bool(strtobool(x)), default=False, nargs='?', const=True,
+                    help='weather to capture videos of the agent performances (check out `videos` folder)')
 
 # Parameters for main algorithm
 parser.add_argument("--epochs", type=int, default=4,
@@ -90,19 +93,22 @@ args = parser.parse_args()
 args.mem = args.recurrence > 1
 
 if __name__ == '__main__':
-    if args.env == 'ThreeRoom':
-        env = gym.make('ThreeRooms-Dynamic-Obstacles-21x21-v0')
-    else:
-        env = gym.make('FourRooms-Dynamic-Obstacles-21x21-v0')
-
-    if args.prod_mode:
-        wandb.init(project=args.wandb_project_name, entity=args.wandb_entity, sync_tensorboard=True, config=vars(args),
-                   monitor_gym=True, save_code=True)
-
-    # Set run dir
     date = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
     default_storage_name = f"{args.algo}_{args.recurrence}"
     model_dir = './storage/{}/{}'.format(args.env, default_storage_name)
+
+    if args.env == 'ThreeRoom':
+        env = gym.make('ThreeRooms-Dynamic-Obstacles-21x21-v0')
+        if args.capture_video:
+            env = gym.wrappers.Monitor(env, f"videos/{default_storage_name}")
+    else:
+        env = gym.make('FourRooms-Dynamic-Obstacles-21x21-v0')
+        if args.capture_video:
+            env = gym.wrappers.Monitor(env, f"videos/{default_storage_name}")
+
+    frames_value_dict = {}
+
+    # Set run dir
 
     # Load loggers and Tensorboard writer
     txt_logger = utils.get_txt_logger(model_dir)
@@ -194,7 +200,7 @@ if __name__ == '__main__':
             fps = logs["num_frames"] / (update_end_time - update_start_time)
             duration = int(time.time() - start_time)
             # print('logs["return_per_episode"]', logs["return_per_episode"])
-            # calculation of mean, std, min, max
+            # calculation of mean, std, min, max of return and frames
             return_per_episode = utils.synthesize(logs["return_per_episode"])
             num_frames_per_episode = utils.synthesize(logs["num_frames_per_episode"])
 
@@ -205,14 +211,16 @@ if __name__ == '__main__':
             for keys in return_per_episode.keys():
                 return_per_episode_dict[keys] = return_per_episode.values()
             header += ["num_frames_" + key for key in num_frames_per_episode.keys()]
+            frames_value_dict[num_frames] = logs["value"]
 
+            # print("frames_value_dict", frames_value_dict)
             data += num_frames_per_episode.values()
             header += ["entropy", "value", "policy_loss", "value_loss", "grad_norm"]
             data += [logs["entropy"], logs["value"], logs["policy_loss"], logs["value_loss"], logs["grad_norm"]]
 
             txt_logger.info(
-                "U {} | F {:06} | FPS {:04.0f} | Duration {} | rR:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | F:μσmM {:.1f} {:.1f} {} {} "
-                "| H {:.3f} | V {:.3f} | pL {:.3f} | vL {:.3f} | ∇ {:.3f}".format(*data))
+                "U {} | F {:06} | FPS {:04.0f} | Duration {} | rR:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | "
+                "F:μσmM {:.1f} {:.1f} {} {} | H {:.3f} | V {:.3f} | pL {:.3f} | vL {:.3f} | ∇ {:.3f}".format(*data))
 
             if status["num_frames"] == 0:
                 csv_logger.writerow(header)
@@ -221,7 +229,11 @@ if __name__ == '__main__':
 
             for field, value in zip(header, data):
                 tb_writer.add_scalar(field, value, num_frames)
-
+        if args.prod_mode:
+            wandb.init(project=args.wandb_project_name, entity=args.wandb_entity, sync_tensorboard=True,
+                       config=vars(args), monitor_gym=True, save_code=True)
+            wandb.log({'value': logs["value"], 'entropy_loss': logs["entropy"], 'policy_loss': logs["policy_loss"],
+                       'value_loss': logs["value_loss"], 'grad_norm': logs["grad_norm"]}, step=num_frames)
         # Save status
         if args.save_interval > 0 and update % args.save_interval == 0:
             status = {"num_frames": num_frames, "update": update,

@@ -1,0 +1,34 @@
+{
+    "os": "Windows-10-10.0.19041-SP0",
+    "python": "3.6.13",
+    "heartbeatAt": "2021-11-15T19:25:17.413137",
+    "startedAt": "2021-11-15T19:25:13.788813",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--env",
+        "ThreeRoom",
+        "--algo",
+        "ppo",
+        "--frames-per-proc",
+        "128",
+        "--memory",
+        "--recurrence",
+        "4"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": null,
+        "commit": "810c5b232d7889d322528cff29fd32fcd4ecdb51"
+    },
+    "email": "164931787@qq.com",
+    "root": "D:/NUS/MSC/ME5406/Projects/ME5406_mingrid/ME5406_Project2",
+    "host": "LAPTOP-7K41K3CS",
+    "username": "FHL",
+    "executable": "C:\\Users\\FHL\\anaconda3\\envs\\env\\python.exe"
+}
