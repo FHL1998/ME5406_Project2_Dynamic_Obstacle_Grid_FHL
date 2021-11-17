@@ -34,6 +34,7 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11
 
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
+> set `--prod-mode` to be `True` if you want to use production mode with wandb.
 ### Trian
 - A2C Agent
 ```python
