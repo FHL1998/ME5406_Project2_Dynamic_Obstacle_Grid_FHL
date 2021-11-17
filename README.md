@@ -1,11 +1,15 @@
 # ME5406_Project2_Dynamic_Obstacle_Grid_FHL ![maven](https://img.shields.io/badge/NUS-ME5406-important)
-This repository contains the implementation of reinforcement learning algorithms like PPO and A2C, to solve the problem: Dynamic Obstacle Avoidance in Generalized Environment. And test the generalization and migration of the trained model using these algorithms.
+This repository contains the implementation of reinforcement learning algorithms like PPO and A2C, to solve the problem: Dynamic Obstacle Avoidance in Generalized Environment. And test the **generalization and migration** of the trained model using these algorithms.
 
 ## Project Description
 > The objective of this project is to Deep Reinforcement Learning techniques to implement the **Dynamic Obstacle Avoidance in Generalized Environment**. 
 > The problem is essentially a grid-world scenario in which the agent’s target is to go from the start point, go through the room by exit which was randomly setalong the wall, and reach the goal which set in another room, while avoiding crashing into dynamic obstacles in the environment. Meanwhile, the adding of the field of views enables the agent to have the ability of partial or fully observation. It has to be mentioned that the generalization ability oftrained model is tested during the process.
 
-The available environments are: `ThreeRooms-Dynamic-Obstacles-21x21-v0` and `FourRooms-Dynamic-Obstacles-21x21-v0` 
+The available environments are: `ThreeRooms-Dynamic-Obstacles-21x21-v0` and `FourRooms-Dynamic-Obstacles-21x21-v0`:
+* 📈 Tensorboard Logging
+* 📜 Local Reproducibility via Seeding
+* 🎮 Videos of Gameplay Capturing
+* 🧫 Experiment Management with [Weights and Biases](https://wandb.ai/fhl1998/me5406?workspace=user-fhl1998)
 
 ## Project Preparation ![maven](https://img.shields.io/badge/Project-Preparation-important)
  ### Virtual Environment Creation
@@ -21,6 +25,12 @@ The project is based on the python version `Python 3.6.8`. For the requirements,
 ```python
 pip install -r requirements.txt
 ```
+
+To use GPU acceleration, make sure to install the appropriate CUDA version; the installation command for the project is:
+```python
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
+```
+
 
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
@@ -61,7 +71,7 @@ python visualize.py --env 'FourRoom' --algo ppo --memory --recurrence 2
 ```
 
 ### Tensorboard & WanDB
-During training, logs are recorder in Tensorboard and WanDB, and an example of using tensorboard:
+During training, logs are recorder in Tensorboard and Weights & Biases, and an example of using tensorboard:
 ```python
 cd storage/ppo_4
 tensorboard --logdir=./ --host=127.0.0.1
