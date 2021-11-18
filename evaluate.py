@@ -29,7 +29,7 @@ parser.add_argument("--trained_env", default='ThreeRoom',
 parser.add_argument("--eval_env", default='FourRoom', required=True,
                     help="name of the env (default: 'FourRoom')")
 parser.add_argument("--algo", required=True,
-                    help="name of algorithm (REQUIRED)")
+                    help="name of algorithm ppo/a2c")
 parser.add_argument("--episodes", type=int, default=200,
                     help="number of episodes of evaluation (default: 100)")
 parser.add_argument("--seed", type=int, default=0,

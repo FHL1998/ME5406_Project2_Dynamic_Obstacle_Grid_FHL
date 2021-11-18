@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--env", default='FourRoom', required=True,
                     help="name of the env (default: 'FourRoom')")
 parser.add_argument("--algo", required=True,
-                    help="algorithm to use: a2c | ppo (REQUIRED)")
+                    help="algorithm to use: a2c/ppo")
 parser.add_argument("--seed", type=int, default=0,
                     help="random seed (default: 0)")
 parser.add_argument("--shift", type=int, default=0,
