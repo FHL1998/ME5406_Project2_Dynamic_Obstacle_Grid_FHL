@@ -45,37 +45,6 @@ def rotate_fn(fin, cx, cy, theta):
     return filter_out
 
 
-def point_in_line(x0, y0, x1, y1, r):
-    p0 = np.array([x0, y0])
-    p1 = np.array([x1, y1])
-    direction_vector = p1 - p0
-    dist = np.linalg.norm(direction_vector)
-    unit_direction_vector = dir / dist  # unit vector
-
-    x_min = min(x0, x1) - r
-    x_max = max(x0, x1) + r
-    y_min = min(y0, y1) - r
-    y_max = max(y0, y1) + r
-
-    def fn(x, y):
-        # Fast, early escape test
-        if x < x_min or x > x_max or y < y_min or y > y_max:
-            return False
-
-        q = np.array([x, y])
-        pq = q - p0
-
-        # Closest point on line
-        a = np.dot(pq, unit_direction_vector)
-        a = np.clip(a, 0, dist)
-        p = p0 + a * dir
-
-        dist_to_line = np.linalg.norm(q - p)
-        return dist_to_line <= r
-
-    return fn
-
-
 def point_in_circle(cx, cy, r):
     def fn(x, y):
         return (x - cx) * (x - cx) + (y - cy) * (y - cy) <= r * r
