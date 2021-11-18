@@ -220,7 +220,7 @@ if __name__ == '__main__':
 
             txt_logger.info(
                 "U {} | F {:06} | FPS {:04.0f} | Duration {} | rR:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | "
-                "F:μσmM {:.1f} {:.1f} {} {} | H {:.3f} | V {:.3f} | pL {:.3f} | vL {:.3f} | ∇ {:.3f}".format(*data))
+                "F:μσmM {:.1f} {:.1f} {} {} | H {:.2f} | V {:.2f} | pL {:.2f} | vL {:.2f} | ∇ {:.2f}".format(*data))
 
             if status["num_frames"] == 0:
                 csv_logger.writerow(header)
