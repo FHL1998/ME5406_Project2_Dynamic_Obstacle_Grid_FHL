@@ -10,29 +10,29 @@ from torch.distributions.categorical import Categorical
 # import algorithms
 
 
-class ACModel:
-    recurrent = False
-
-    @abstractmethod
-    def __init__(self, obs_space, action_space):
-        pass
-
-    @abstractmethod
-    def forward(self, obs):
-        pass
-
-
-class RecurrentACModel(ACModel):
-    recurrent = True
-
-    @abstractmethod
-    def forward(self, obs, memory):
-        pass
-
-    @property
-    @abstractmethod
-    def memory_size(self):
-        pass
+# class ACModel:
+#     recurrent = False
+#
+#     @abstractmethod
+#     def __init__(self, obs_space, action_space):
+#         pass
+#
+#     @abstractmethod
+#     def forward(self, obs):
+#         pass
+#
+#
+# class RecurrentACModel(ACModel):
+#     recurrent = True
+#
+#     @abstractmethod
+#     def forward(self, obs, memory):
+#         pass
+#
+#     @property
+#     @abstractmethod
+#     def memory_size(self):
+#         pass
 
 
 def init_params(m):
@@ -44,7 +44,9 @@ def init_params(m):
             m.bias.data.fill_(0)
 
 
-class ACModel(nn.Module, RecurrentACModel):
+class ACModel(nn.Module):
+    recurrent = True
+
     def __init__(self, obs_space, action_space, use_memory=False):
         super().__init__()
 
