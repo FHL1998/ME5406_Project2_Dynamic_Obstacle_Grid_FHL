@@ -44,7 +44,7 @@ parser.add_argument("--log-interval", type=int, default=1,
                     help="number of updates between two logs (default: 1)")
 parser.add_argument("--save-interval", type=int, default=10,
                     help="save interval of between 2 updates (default: 10)")
-parser.add_argument("--procs", type=int, default=4,
+parser.add_argument("--procs", type=int, default=8,
                     help="number of processes (default: 8)")
 parser.add_argument("--frames", type=int, default=1.5 * 10 ** 7,
                     help="number of frames of training (default: 1.5 * e7)")
@@ -52,7 +52,7 @@ parser.add_argument('--wandb-project-name', type=str, default="me5406",
                     help="the wandb's project name")
 parser.add_argument('--wandb-entity', type=str, default="fhl1998",
                     help="the entity of wandb's project")
-parser.add_argument('--prod-mode', type=bool, default=True,
+parser.add_argument('--prod-mode', type=bool, default=False,
                     help='run the script in production mode and use wandb to log outputs')
 parser.add_argument('--capture-video', type=lambda x: bool(strtobool(x)), default=False, nargs='?', const=True,
                     help='weather to capture videos of the agent performances (check out `videos` folder)')
