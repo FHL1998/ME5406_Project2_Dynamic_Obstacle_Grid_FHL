@@ -97,6 +97,11 @@ if __name__ == '__main__':
     default_storage_name = f"{args.algo}_{args.recurrence}"
     model_dir = './storage/{}/{}'.format(args.env, default_storage_name)
 
+    # initial wandb if using production mode
+    if args.prod_mode:
+        wandb.init(project=args.wandb_project_name, entity=args.wandb_entity, sync_tensorboard=True,
+                   config=vars(args), monitor_gym=True, save_code=True)
+
     if args.env == 'ThreeRoom':
         env = gym.make('ThreeRooms-Dynamic-Obstacles-21x21-v0')
         if args.capture_video:
@@ -130,29 +135,25 @@ if __name__ == '__main__':
     for i in range(args.procs):
         env.seed(args.seed + 100 * i)
         envs.append(env)
-    txt_logger.info("Environments loaded\n")
 
     # Load training status
     try:
         status = utils.get_status(model_dir)
     except OSError:
         status = {"num_frames": 0, "update": 0}
-    txt_logger.info("Training status loaded\n")
 
     # Load observations preprocessor
     obs_space_shape, preprocess_observation = utils.get_obss_preprocessor(envs[0].observation_space)
-    txt_logger.info("Observations preprocessor loaded")
 
     # Load model
     actor_critic_model = ACModel(obs_space_shape, envs[0].action_space, args.mem)
     if "model_state" in status:
         actor_critic_model.load_state_dict(status["model_state"])
     actor_critic_model.to(device)
-    txt_logger.info("Model loaded\n")
-    txt_logger.info("{}\n".format(actor_critic_model))
+    if args.prod_mode:
+        wandb.watch(actor_critic_model, log_freq=10000)
 
     # Load algo
-
     if args.algo == "a2c":
         algo = algorithms.A2CAlgo(envs, actor_critic_model, device, args.frames_per_proc, args.discount, args.lr,
                                   args.gae_lambda,
@@ -168,7 +169,6 @@ if __name__ == '__main__':
 
     if "optimizer_state" in status:
         algo.optimizer.load_state_dict(status["optimizer_state"])
-    txt_logger.info("Optimizer loaded\n")
 
     # Train model
 
@@ -230,8 +230,6 @@ if __name__ == '__main__':
             for field, value in zip(header, data):
                 tb_writer.add_scalar(field, value, num_frames)
         if args.prod_mode:
-            wandb.init(project=args.wandb_project_name, entity=args.wandb_entity, sync_tensorboard=True,
-                       config=vars(args), monitor_gym=True, save_code=True)
             wandb.log({'value': logs["value"], 'entropy_loss': logs["entropy"], 'policy_loss': logs["policy_loss"],
                        'value_loss': logs["value_loss"], 'grad_norm': logs["grad_norm"]}, step=num_frames)
         # Save status

@@ -1,0 +1,105 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.3
+    code_path: code/train.py
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.6.13
+    start_time: 1637167316
+    t:
+      1:
+      - 1
+      - 3
+      2:
+      - 1
+      - 3
+      3:
+      - 1
+      - 16
+      4: 3.6.13
+      5: 0.12.3
+      8:
+      - 3
+      - 5
+algo:
+  desc: null
+  value: ppo
+batch_size:
+  desc: null
+  value: 256
+capture_video:
+  desc: null
+  value: false
+clip_eps:
+  desc: null
+  value: 0.2
+discount:
+  desc: null
+  value: 0.99
+entropy_coef:
+  desc: null
+  value: 0.01
+env:
+  desc: null
+  value: ThreeRoom
+epochs:
+  desc: null
+  value: 4
+frames:
+  desc: null
+  value: 15000000.0
+frames_per_proc:
+  desc: null
+  value: 128
+gae_lambda:
+  desc: null
+  value: 0.95
+log_interval:
+  desc: null
+  value: 1
+lr:
+  desc: null
+  value: 0.001
+max_grad_norm:
+  desc: null
+  value: 0.5
+mem:
+  desc: null
+  value: true
+memory:
+  desc: null
+  value: true
+optim_alpha:
+  desc: null
+  value: 0.99
+optim_eps:
+  desc: null
+  value: 1.0e-08
+procs:
+  desc: null
+  value: 4
+prod_mode:
+  desc: null
+  value: true
+recurrence:
+  desc: null
+  value: 2
+save_interval:
+  desc: null
+  value: 10
+seed:
+  desc: null
+  value: 1
+value_loss_coef:
+  desc: null
+  value: 0.5
+wandb_entity:
+  desc: null
+  value: fhl1998
+wandb_project_name:
+  desc: null
+  value: me5406
