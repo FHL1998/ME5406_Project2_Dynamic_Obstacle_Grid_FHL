@@ -31,6 +31,20 @@ To use GPU acceleration, make sure to install the appropriate CUDA version; the 
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
 ```
 
+## Project Structure
+* ME5406 Project2
+    * `./algoithms`
+        * This folder contains the implemention of PPO and A2C.     
+    * `./custom_env`
+        * This folder contains the environment construction details of the project.  
+    * `./plot`
+        * This folder contains some scripts for the demonstration of metrics during training and evaluation process.
+    * `./resuls`
+        * This folder contains some of the plot results for the task of comparison, tuning hyperparameter, etc.
+    * `./storage`
+        * This folder includes the **trained model**, **tensorborad log**, and **csv log**.
+    * `./utils`
+        * Some useful tools like data storge format transfer are contained in this folder.
 
 ## Project Execution ![maven](https://img.shields.io/badge/Project-Execution-important)
 The main scripts of the project are: `train.py`, `evaluate.py`, and `visualize.py`. For the detailed usage please refer to the parser in the corresponding files. The example of training, evaluation and visualization can be illustrated as:
@@ -77,6 +91,7 @@ During training, logs are recorder in Tensorboard and Weights & Biases, and an e
 cd storage/ppo_4
 tensorboard --logdir=./ --host=127.0.0.1
 ```
+ 
 
 ## Result Display ![maven](https://img.shields.io/badge/Result-GIF-success)
 ### 3-room Environment
@@ -105,4 +120,5 @@ tensorboard --logdir=./ --host=127.0.0.1
         <td><img src="results/gifs/storage_4_room_ppo_lstm4.gif" width="250" /></td>
     </tr>
 </table>
+
 
