@@ -46,6 +46,7 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11
         * This folder contains some of the plot results for the task of comparison, tuning hyperparameter, etc.
     * `./storage`
         * This folder includes the **trained model**, **tensorborad log**, and **csv log**.
+        * [trained models](storage/ThreeRoom)
     * `./utils`
         * Some useful tools like data storge format transfer are contained in this folder.
 
