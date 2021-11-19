@@ -36,8 +36,10 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11
     * `./algoithms`
         * This folder contains the implemention of PPO and A2C.   
         * [ppo.py](algorithms/algos/ppo.py) - realization of PPO-Clip, with hyper-parameters tuning options.  
+        * [a2c.py](algorithms/algos/a2c.py) - realization of A2C, with hyper-parameters tuning options.  
     * `./custom_env`
-        * This folder contains the environment construction details of the project.  
+        * This folder contains the environment construction details of the project. 
+        * [env.py](custom_env/env/env.py) - specific construction of the environment can be found in this file.
     * `./plot`
         * This folder contains some scripts for the demonstration of metrics during training and evaluation process.
     * `./resuls`
