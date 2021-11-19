@@ -34,7 +34,8 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11
 ## Project Structure
 * ME5406 Project2
     * `./algoithms`
-        * This folder contains the implemention of PPO and A2C.     
+        * This folder contains the implemention of PPO and A2C.   
+        * [ppo.py](algorithms/ppo.py) - realization of PPO-Clip, with hyper-parameters tuning options.  
     * `./custom_env`
         * This folder contains the environment construction details of the project.  
     * `./plot`
