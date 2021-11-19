@@ -98,7 +98,7 @@ tensorboard --logdir=./ --host=127.0.0.1
  
 
 ## Result Display ![maven](https://img.shields.io/badge/Result-GIF-success)
-For **video illustration**, please refer to [video](ME5406_Video.MOV)
+For **video illustration**, please refer to [video](ME5406_Video.MOV), this video explains some problems, possible analysis and conclusions through voice.
 ### 3-room Environment
 
 <table>
